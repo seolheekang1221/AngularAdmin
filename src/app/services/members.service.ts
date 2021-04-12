@@ -30,4 +30,9 @@ export class MembersService {
     }];
     console.log('Done membersRead', this.members);
   }
+
+  membersUpdate(index, member) {
+    this.members[index] = member;
+    console.log('Done membersUpdate', this.members);
+  }
 }
