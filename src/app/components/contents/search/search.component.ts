@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MembersService } from '../../../services/members.service';
 import { SearchService } from '../../../services/search.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -9,13 +10,27 @@ import { SearchService } from '../../../services/search.service';
 })
 export class SearchComponent implements OnInit {
   constructor(
+    private route: ActivatedRoute,
+    private router: Router,
     public membersService: MembersService,
     public searchService: SearchService
-  ) { }
+  ) {
+    this.route.queryParams.subscribe(queryParams => {
+      this.q = queryParams.q || ''
+      this.searchService.searchRead(this.q);
+    });
+  }
 
   q = '';
 
   ngOnInit(): void {
-    this.searchService.searchRead(this.q);
+  }
+
+  searchRead(q): void {
+    this.router.navigate(['/search'], {
+      queryParams: {
+        q: q
+      }
+    });
   }
 }
