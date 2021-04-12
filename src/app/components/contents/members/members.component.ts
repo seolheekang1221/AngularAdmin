@@ -12,5 +12,6 @@ export class MembersComponent implements OnInit {
   ngOnInit(): void {
     this.membersService.member.name = '';
     this.membersService.member.age = '';
+    this.membersService.membersRead();
   }
 }
