@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MembersService } from '../../../services/members.service';
 
 @Component({
   selector: 'app-members',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./members.component.scss']
 })
 export class MembersComponent implements OnInit {
-  constructor() { }
+  constructor(public membersService: MembersService) { }
 
   ngOnInit(): void {
+    this.membersService.member.name = '';
+    this.membersService.member.age = '';
   }
 }
